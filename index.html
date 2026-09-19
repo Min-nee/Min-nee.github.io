@@ -142,7 +142,7 @@ ul.bullets li { margin-bottom: 5px; }
   transform: rotateY(180deg); background: var(--accent-soft);
 }
 .cert-face.back .c-org { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-dim); }
-.cert-face.back .c-org.empty::before { content: "발급처 정보 없음"; color: var(--ink-faint); }
+.cert-face.back .c-org.empty::before { content: ""; color: var(--ink-faint); }
 @media (max-width: 640px) { .cert-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 420px) { .cert-grid { grid-template-columns: 1fr; } }
 
@@ -166,7 +166,7 @@ footer .foot-line { font-size: 13px; color: var(--ink-faint); }
     </nav>
     <div class="nav-actions">
       <a class="btn" href="https://github.com/Min-nee" target="_blank" rel="noopener">GitHub</a>
-      <button class="btn" id="themeBtn">다크모드</button>
+      <button class="btn" id="themeBtn">다크</button>
     </div>
   </div>
 </header>
@@ -396,9 +396,9 @@ certData.forEach(function(c){
 document.getElementById("themeBtn").addEventListener("click", function(){
   var root = document.documentElement;
   var cur = root.getAttribute("data-theme");
-  var next = cur === "light" ? "dark" : "light";
+  var next = cur === "dark" ? "light" : "dark";
   root.setAttribute("data-theme", next);
-  this.textContent = next === "light" ? "라이트모드" : "다크모드";
+  this.textContent = next === "dark" ? "라이트" : "다크";
 });
 </script>
 </body>
