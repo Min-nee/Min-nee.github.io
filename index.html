@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>민지연 — 풀스택 개발자 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F1F4F1;
+  --surface: #FFFFFF;
+  --ink: #16241E;
+  --ink-dim: #4B5B53;
+  --ink-faint: #82938A;
+  --accent: #1F6F5C;
+  --accent-soft: #E1EFE9;
+  --line: #D9E1DC;
+  --radius: 10px;
+}
+:root[data-theme="dark"] {
+  --bg: #0E1512; --surface: #16211D; --ink: #E7EDEA; --ink-dim: #9BB0A6; --ink-faint: #647268;
+  --accent: #4FBFA0; --accent-soft: #1C2B25; --line: #26332D;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1512; --surface: #16211D; --ink: #E7EDEA; --ink-dim: #9BB0A6; --ink-faint: #647268;
+    --accent: #4FBFA0; --accent-soft: #1C2B25; --line: #26332D;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: 'Noto Sans KR', system-ui, sans-serif;
+  line-height: 1.7;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+a { color: var(--accent); }
+
+/* nav */
+header#topnav {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--surface); border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  max-width: 760px; margin: 0 auto; padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.nav-name { font-family: 'Noto Serif KR', serif; font-weight: 700; font-size: 16px; }
+.nav-links { display: flex; gap: 18px; font-size: 13.5px; color: var(--ink-dim); }
+.nav-links a { color: inherit; text-decoration: none; }
+.nav-links a:hover { color: var(--accent); }
+.nav-actions { display: flex; gap: 8px; align-items: center; }
+.btn {
+  font-family: inherit; font-size: 13px; color: var(--ink); background: var(--accent-soft);
+  border: 1px solid var(--line); border-radius: var(--radius); padding: 6px 12px; cursor: pointer;
+  text-decoration: none; display: inline-flex; align-items: center;
+}
+.btn:hover { border-color: var(--accent); }
+@media (max-width: 640px) { .nav-links { display: none; } }
+
+/* hero */
+section#hero { padding: 56px 0 44px; }
+.hero-role { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--accent); margin-bottom: 10px; }
+.hero-name { font-family: 'Noto Serif KR', serif; font-weight: 700; font-size: 34px; margin: 0 0 14px; line-height: 1.3; }
+.hero-pitch { font-size: 16px; color: var(--ink-dim); max-width: 52ch; margin: 0 0 30px; }
+
+.timeline { margin-top: 8px; }
+.timeline-track {
+  display: flex; height: 34px; border-radius: 6px; overflow: hidden; border: 1px solid var(--line);
+}
+.timeline-seg { display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-dim); border-right: 1px solid var(--line); }
+.timeline-seg:last-child { border-right: none; }
+.timeline-seg.customs { flex: 7; background: var(--surface); }
+.timeline-seg.transition { flex: 1; background: var(--accent-soft); color: var(--ink-faint); font-size: 10.5px; }
+.timeline-seg.dev { flex: 3; background: var(--accent); color: var(--surface); font-weight: 500; }
+.timeline-labels { display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-faint); margin-top: 6px; }
+
+/* sections */
+section { padding: 40px 0; border-top: 1px solid var(--line); }
+.section-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 22px; }
+h2.section-title { font-family: 'Noto Serif KR', serif; font-weight: 700; font-size: 21px; margin: 0; }
+.section-note { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-faint); }
+
+/* career */
+.job { margin-bottom: 30px; }
+.job:last-child { margin-bottom: 0; }
+.job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+.job-org { font-family: 'Noto Serif KR', serif; font-weight: 700; font-size: 17px; }
+.job-period { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-faint); white-space: nowrap; }
+.job-role { font-size: 13.5px; color: var(--ink-dim); margin-bottom: 10px; }
+ul.bullets { margin: 0; padding: 0 0 0 18px; font-size: 14.5px; }
+ul.bullets li { margin-bottom: 5px; }
+
+/* projects */
+.project-grid { display: flex; flex-direction: column; gap: 16px; }
+.project-card { border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; background: var(--surface); }
+.project-title { font-weight: 500; font-size: 15.5px; margin: 0 0 4px; }
+.project-period { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--ink-faint); margin-bottom: 10px; }
+.project-card ul.bullets { font-size: 13.5px; margin-bottom: 12px; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-dim);
+  background: var(--accent-soft); border-radius: 5px; padding: 3px 7px;
+}
+
+/* skills */
+.skill-groups { display: flex; flex-direction: column; gap: 16px; }
+.skill-group-label { font-size: 13px; color: var(--ink-faint); margin-bottom: 8px; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-tag {
+  font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink);
+  border: 1px solid var(--line); border-radius: 6px; padding: 5px 10px; background: var(--surface);
+}
+
+/* education */
+.edu-item { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+.edu-item:last-child { margin-bottom: 0; }
+.edu-left .edu-major { font-weight: 500; font-size: 15px; }
+.edu-left .edu-school { font-size: 13px; color: var(--ink-dim); }
+.edu-right { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-faint); text-align: right; white-space: nowrap; }
+
+/* certs */
+.cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.cert-card { perspective: 1000px; height: 110px; cursor: pointer; }
+.cert-card-inner {
+  position: relative; width: 100%; height: 100%; transition: transform .5s;
+  transform-style: preserve-3d;
+}
+.cert-card.flipped .cert-card-inner { transform: rotateY(180deg); }
+.cert-face {
+  position: absolute; inset: 0; backface-visibility: hidden;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--surface);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 10px; text-align: center;
+}
+.cert-face .c-name { font-weight: 500; font-size: 14px; line-height: 1.4; }
+.cert-face .c-date { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-faint); margin-top: 8px; }
+.cert-face.back {
+  transform: rotateY(180deg); background: var(--accent-soft);
+}
+.cert-face.back .c-org { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-dim); }
+.cert-face.back .c-org.empty::before { content: "발급처 정보 없음"; color: var(--ink-faint); }
+@media (max-width: 640px) { .cert-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 420px) { .cert-grid { grid-template-columns: 1fr; } }
+
+/* footer */
+footer { padding: 40px 0 60px; text-align: left; }
+footer .foot-line { font-size: 13px; color: var(--ink-faint); }
+</style>
+</head>
+<body>
+
+<header id="topnav">
+  <div class="nav-inner">
+    <div class="nav-name">민지연</div>
+    <nav class="nav-links">
+      <a href="#career">경력</a>
+      <a href="#projects">프로젝트</a>
+      <a href="#personal">개인 프로젝트</a>
+      <a href="#skills">기술스택</a>
+      <a href="#education">학력</a>
+      <a href="#certs">자격증</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn" href="https://github.com/Min-nee" target="_blank" rel="noopener">GitHub</a>
+      <button class="btn" id="themeBtn">다크모드</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section id="hero">
+    <div class="hero-role">Jiyeon Min · Full-Stack Developer</div>
+    <h1 class="hero-name">민지연</h1>
+    <p class="hero-pitch">공공 시스템의 경험, 신뢰할 수 있는 풀스택 개발자</p>
+    <div class="timeline">
+      <div class="timeline-track">
+        <div class="timeline-seg customs">관세청 · 8년</div>
+        <div class="timeline-seg transition">전환</div>
+        <div class="timeline-seg dev">개발 · 3년</div>
+      </div>
+      <div class="timeline-labels"><span>2015</span><span>2022</span><span>2026</span></div>
+    </div>
+  </section>
+
+  <section id="career">
+    <div class="section-head">
+      <h2 class="section-title">경력</h2>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-org">㈜프리픽스</div>
+        <div class="job-period">2023.10 – 2026.04</div>
+      </div>
+      <div class="job-role">정규직 · 사원 · 공공 웹사이트 유지보수 및 신규 기능 개발</div>
+      <ul class="bullets">
+        <li>한국환경산업기술원 협력업체로 근무하며 공공 웹사이트 4종의 유지보수·개발을 수행</li>
+        <li>전자정부프레임워크 기반 시스템의 사용자·관리자 페이지 안정화, 기능 개선, 외부 서비스 연동을 담당</li>
+        <li>웹 접근성 인증 획득을 위한 프론트엔드 코드 점검 및 마크업 개선</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-org">관세청</div>
+        <div class="job-period">2015.10 – 2022.10</div>
+      </div>
+      <div class="job-role">정규직 · 8급 · 수출입 관리, 관세심사, 관세조사, FTA검증</div>
+      <ul class="bullets">
+        <li>수출입 신고 확인 및 실물 점검을 통한 통관 관리</li>
+        <li>수출입 신고내역 오류 분석 및 세액 정정</li>
+        <li>협정별 원산지 기준 충족 여부 검증(FTA검증), 관세법 위반 사안 조사</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head">
+      <h2 class="section-title">대표 프로젝트</h2>
+      <span class="section-note">㈜프리픽스</span>
+    </div>
+    <div class="project-grid">
+
+      <div class="project-card">
+        <div class="project-title">환경책임투자 종합플랫폼</div>
+        <div class="project-period">2023.10 – 2026.04 · <a href="https://www.gmi.go.kr" target="_blank" rel="noopener">사이트 바로가기 ↗</a></div>
+        <ul class="bullets">
+          <li>사용자·관리자 페이지 전반 유지보수</li>
+          <li>지원사업 접수 기능 활성화/비활성화 관리 체계 구축</li>
+          <li>웹 접근성 인증 획득을 위한 프론트엔드 코드 점검 및 마크업 개선</li>
+          <li>상용 리포팅 툴(Crownix) 연동으로 수료증 출력 기능 구현</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">전자정부프레임워크</span><span class="tag">Java</span><span class="tag">HTML/CSS/JS</span>
+          <span class="tag">jQuery</span><span class="tag">Tibero</span><span class="tag">Oracle</span><span class="tag">SVN</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">(구) 환경정보공개시스템</div>
+        <div class="project-period">2023.10 – 2026.01 · <a href="https://www.env-info.kr" target="_blank" rel="noopener">사이트 바로가기 ↗</a></div>
+        <ul class="bullets">
+          <li>사용자·관리자 페이지 운영 안정화 및 유지보수</li>
+          <li>데이터 입력 활성화 기능 및 예외 케이스 사후정정 처리</li>
+          <li>시스템 내 보고서 발행 기능 지원</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">전자정부프레임워크</span><span class="tag">Java</span><span class="tag">HTML/CSS/JS</span>
+          <span class="tag">jQuery</span><span class="tag">Tibero</span><span class="tag">Oracle</span><span class="tag">SVN</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">녹색경영기업 금융지원시스템</div>
+        <div class="project-period">2023.10 – 2026.04 · <a href="https://www.envinance.kr" target="_blank" rel="noopener">사이트 바로가기 ↗</a></div>
+        <ul class="bullets">
+          <li>사용자·관리자 페이지 유지보수</li>
+          <li>주기적 통계 데이터 업데이트</li>
+          <li>보안·운영 목적에 따른 사용자 분류별 메뉴 접근권한 관리</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">전자정부프레임워크</span><span class="tag">Java</span><span class="tag">HTML/CSS/JS</span>
+          <span class="tag">jQuery</span><span class="tag">Tibero</span><span class="tag">Oracle</span><span class="tag">SVN</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">통합환경안전관리시스템</div>
+        <div class="project-period">2026.01 – 2026.04</div>
+        <ul class="bullets">
+          <li>신규 시스템 개발 프로젝트 참여</li>
+          <li>시스템·DB 접근 로그 기록 기능 개발 (보안·감사 대응)</li>
+          <li>사용자 알림 및 안내를 위한 메일발송 기능 구현 및 연동</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">전자정부프레임워크</span><span class="tag">Java</span><span class="tag">HTML/CSS/JS</span>
+          <span class="tag">jQuery</span><span class="tag">Tibero</span><span class="tag">Git</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="personal">
+    <div class="section-head">
+      <h2 class="section-title">개인 프로젝트</h2>
+      <span class="section-note">GitHub</span>
+    </div>
+    <div class="project-grid">
+
+      <div class="project-card">
+        <div class="project-title">MRTour</div>
+        <div class="project-period"><a href="https://github.com/Min-nee/MRTour" target="_blank" rel="noopener">GitHub 바로가기 ↗</a></div>
+        <ul class="bullets">
+          <li>여행사 홈페이지 구축 프로젝트</li>
+          <li>Model, Controller(MVC) 담당 및 DB 설계 참여</li>
+          <li>발표자료 작성 및 발표 담당</li>
+        </ul>
+        <div class="tag-row"><span class="tag">Java</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head"><h2 class="section-title">기술 스택</h2></div>
+    <div class="skill-groups">
+      <div>
+        <div class="skill-group-label">프레임워크 · 언어</div>
+        <div class="skill-tags">
+          <span class="skill-tag">전자정부프레임워크</span><span class="skill-tag">Java</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">프론트엔드</div>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML</span><span class="skill-tag">CSS</span>
+          <span class="skill-tag">JavaScript</span><span class="skill-tag">jQuery</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">데이터베이스</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Tibero</span><span class="skill-tag">Oracle</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">형상관리</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Git</span><span class="skill-tag">SVN</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-head"><h2 class="section-title">학력</h2></div>
+    <div class="edu-item">
+      <div class="edu-left">
+        <div class="edu-major">컴퓨터과학과</div>
+        <div class="edu-school">한국방송통신대학교 · 편입 · 졸업예정</div>
+      </div>
+      <div class="edu-right">2025.03 – 2027.02<br>학점 3.9 / 4.5</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-left">
+        <div class="edu-major">중어중문학과</div>
+        <div class="edu-school">한국방송통신대학교 · 졸업</div>
+      </div>
+      <div class="edu-right">2017.03 – 2022.02<br>학점 3.2 / 4.5</div>
+    </div>
+  </section>
+
+  <section id="certs">
+    <div class="section-head"><h2 class="section-title">자격증</h2></div>
+    <div class="cert-grid" id="certGrid"></div>
+  </section>
+
+  <footer>
+    <div class="foot-line">github.com/Min-nee</div>
+  </footer>
+
+</div>
+
+<script>
+var certData = [
+  { name: "정보처리기사", date: "2023.09.01", org: "한국산업인력공단" },
+  { name: "정보처리산업기사", date: "2023.06.09", org: "한국산업인력공단" },
+  { name: "ADsP", date: "2022.06.17", org: "한국데이터산업진흥원" },
+  { name: "OPIc(영어) IM1", date: "2026.03.05", org: "" },
+  { name: "전산회계운용사2급", date: "2021.11.12", org: "대한상공회의소" },
+  { name: "전산회계1급", date: "2021.10.21", org: "한국세무사회" },
+  { name: "무역영어2급", date: "2018.10.11", org: "대한상공회의소" },
+  { name: "컨벤션기획사2급", date: "2013.08.16", org: "한국산업인력공단" },
+  { name: "컴퓨터활용능력2급", date: "2013.04.05", org: "대한상공회의소" }
+];
+
+var certGrid = document.getElementById("certGrid");
+certData.forEach(function(c){
+  var card = document.createElement("div");
+  card.className = "cert-card";
+  card.innerHTML =
+    '<div class="cert-card-inner">' +
+      '<div class="cert-face front"><div class="c-name">' + c.name + '</div><div class="c-date">' + c.date + '</div></div>' +
+      '<div class="cert-face back"><div class="c-org' + (c.org ? '' : ' empty') + '">' + c.org + '</div></div>' +
+    '</div>';
+  card.addEventListener("click", function(){ card.classList.toggle("flipped"); });
+  certGrid.appendChild(card);
+});
+
+document.getElementById("themeBtn").addEventListener("click", function(){
+  var root = document.documentElement;
+  var cur = root.getAttribute("data-theme");
+  var next = cur === "light" ? "dark" : "light";
+  root.setAttribute("data-theme", next);
+  this.textContent = next === "light" ? "라이트" : "다크";
+});
+</script>
+</body>
+</html>
